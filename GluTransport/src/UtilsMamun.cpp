@@ -18,8 +18,17 @@ void drawCircle(GLfloat x, GLfloat y, GLfloat radius)
 			    x + (radius * cos(i *  twicePi / lineAmount)),
 			    y + (radius* sin(i * twicePi / lineAmount))
 			);
+
 		}
 	glEnd();
+glColor3f(1.0f, 0.0f, 0.0f); // set color to red
+glBegin(GL_LINES);
 
+	  glVertex2f(x, y); // center of the circle
+    for(int i = 0; i <= 10; i++) {
+        glVertex2f(x + radius * cos(i * twicePi / 10), y + radius * sin(i * twicePi / 10)); // end point of the line
+        glVertex2f(x, y); // center of the circle
+    }
+glEnd();
 	glFlush();
 }
