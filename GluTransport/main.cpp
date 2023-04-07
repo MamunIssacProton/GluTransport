@@ -17,7 +17,7 @@ void display() {
     glBegin(GL_POINTS);
 
     RenderBackWheel();
-
+    RenderPartsConnector();
      glFlush(); // Render now
 }
 

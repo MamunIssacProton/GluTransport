@@ -41,3 +41,13 @@ void drawRingSpoke(GLfloat x, GLfloat y, GLfloat radius, int spokeCount, GLfloat
     glFlush();
 }
 
+
+void drawLine(GLfloat xStart, GLfloat yStart, GLfloat xEnd, GLfloat yEnd, GLfloat color[])
+{
+    glColor3f(color[0],color[1], color[2]);
+    glBegin(GL_LINES);
+    glVertex2f(xStart,yStart);
+    glVertex2f(xEnd, yEnd);
+    glEnd();
+    glFlush();
+}
