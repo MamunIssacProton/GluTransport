@@ -1,13 +1,7 @@
 #include <windows.h> // for MS Windows
 #include <GL/glut.h> // GLUT, include glu.h and gl.h
-#include<math.h>
-# define PI    3.14159265358979323846
-#include<UtilsMamun.h>
-/* Handler for window-repaint event. Call back when the window first appears and
-whenever the window needs to be re-painted. */
-GLfloat x=-0.3f;
-GLfloat y=-0.2f;
-GLfloat r=-0.2f;
+#include<UtilsScene.h>
+
 void renderBitmapString(float x, float y, float z, void *font, char *string) {
     char *c;
     glRasterPos3f(x, y,z);
@@ -22,8 +16,8 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT); // Clear the color buffer (background)
     glBegin(GL_POINTS);
 
-    drawCircle(x,y,r);
-
+    RenderBackWheel();
+    RenderPartsConnector();
      glFlush(); // Render now
 }
 

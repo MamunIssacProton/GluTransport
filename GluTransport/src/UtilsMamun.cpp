@@ -3,7 +3,7 @@
 #include<math.h>
 # define PI    3.14159265358979323846
 
-void drawCircle(GLfloat x, GLfloat y, GLfloat radius)
+void drawCircle(GLfloat x, GLfloat y, GLfloat radius, GLfloat color[])
 {
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -11,7 +11,7 @@ void drawCircle(GLfloat x, GLfloat y, GLfloat radius)
     int lineAmount = 5200;
 	GLfloat twicePi = 2.0f * PI;
 
-    glColor3f(0.0f, 0.1f, 0.0f);
+    glColor3f(color[0],color[1], color[2]);
 	glBegin(GL_LINE_LOOP);
 		for(int i = 0; i <= lineAmount;i++) {
 			glVertex2f(
@@ -21,14 +21,33 @@ void drawCircle(GLfloat x, GLfloat y, GLfloat radius)
 
 		}
 	glEnd();
-glColor3f(1.0f, 0.0f, 0.0f); // set color to red
-glBegin(GL_LINES);
 
-	  glVertex2f(x, y); // center of the circle
-    for(int i = 0; i <= 10; i++) {
-        glVertex2f(x + radius * cos(i * twicePi / 10), y + radius * sin(i * twicePi / 10)); // end point of the line
-        glVertex2f(x, y); // center of the circle
-    }
-glEnd();
 	glFlush();
+}
+
+void drawRingSpoke(GLfloat x, GLfloat y, GLfloat radius, int spokeCount, GLfloat color[])
+
+{
+    glColor3f(color[0],color[1], color[2]);
+    glBegin(GL_LINES);
+    GLfloat twicePi = 2.0f * PI;
+    glVertex2f(x, y);
+    for(int i = 0; i <=spokeCount; i++)
+    {
+        glVertex2f(x + radius * cos(i * twicePi / spokeCount), y + radius * sin(i * twicePi / spokeCount));
+        glVertex2f(x, y);
+    }
+    glEnd();
+    glFlush();
+}
+
+
+void drawLine(GLfloat xStart, GLfloat yStart, GLfloat xEnd, GLfloat yEnd, GLfloat color[])
+{
+    glColor3f(color[0],color[1], color[2]);
+    glBegin(GL_LINES);
+    glVertex2f(xStart,yStart);
+    glVertex2f(xEnd, yEnd);
+    glEnd();
+    glFlush();
 }
