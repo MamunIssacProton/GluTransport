@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1680641885 source:c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\main.cpp
+1680642612 source:c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<math.h>
+	<UtilsMamun.h>
 
 1301111162 c:\program files (x86)\codeblocks\mingw\include\windows.h
 	<winresrc.h>
@@ -221,4 +222,11 @@
 
 1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
 	<_mingw.h>
+
+1680855267 source:c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\src\utilsmamun.cpp
+	<windows.h>
+	<GL/glut.h>
+	<math.h>
+
+1680642498 c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\include\utilsmamun.h
 
