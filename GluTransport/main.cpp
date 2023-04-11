@@ -18,6 +18,20 @@ void display() {
 
     RenderBackWheel();
     RenderPartsConnector();
+    RenderTail();
+
+    RenderFrontWheel();
+    RenderContainer();
+    RenderSeat();
+
+    RenderSteering();
+
+    RenderCloud();
+
+    RenderMountain();
+
+    RenderRoad();
+
      glFlush(); // Render now
 }
 
