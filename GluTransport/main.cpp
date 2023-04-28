@@ -16,8 +16,24 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT); // Clear the color buffer (background)
     glBegin(GL_POINTS);
 
-    RenderBackWheel();
-    RenderPartsConnector();
+//    RenderBackWheel();
+//    RenderPartsConnector();
+//    RenderTail();
+//
+//    RenderFrontWheel();
+//    RenderContainer();
+//    RenderSeat();
+//
+//    RenderSteering();
+//
+//    RenderCloud();
+//
+//    RenderMountain();
+//
+//    RenderRoad();
+RenderCanvas();
+
+
      glFlush(); // Render now
 }
 
@@ -29,6 +45,9 @@ int main(int argc, char** argv) {
     glutInitWindowSize(640, 480); // Set the window's initial width & height
     glutInitWindowPosition(80, 50);  // Set the window's initial position according to the monitor
     glutCreateWindow("GluTransport"); // Create a window with the given title
+   // glutFullScreen();
+//   HWND hWnd = GetForegroundWindow();
+//    ShowWindow(hWnd, SW_MAXIMIZE);
     glutDisplayFunc(display); // Register display callback handler for window re-paint
     glutMainLoop(); // Enter the event-processing loop
     return 0;

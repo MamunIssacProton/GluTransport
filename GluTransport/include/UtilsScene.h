@@ -2,8 +2,14 @@
 #define UTILSSCENE_H
 
 void RenderBackWheel();
+void RenderFrontWheel();
 void RenderPartsConnector();
-
-
-
+void RenderContainer();
+void RenderTail();
+void RenderSeat();
+void RenderSteering();
+void RenderCloud();
+void RenderMountain();
+void RenderRoad();
+void RenderCanvas();
 #endif // UTILSSCENE_H
