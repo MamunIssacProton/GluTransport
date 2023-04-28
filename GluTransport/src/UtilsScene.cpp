@@ -2,6 +2,19 @@
 #include <GL/glut.h> // GLUT, include glu.h and gl.h
 #include<math.h>
 #include<UtilsMamun.h>
+
+GLfloat canvasX=-1.0f;
+GLfloat canvasY=1.0f;
+
+GLfloat canvasHeight=0.5f;
+GLfloat canvasWidth=0.7f;
+
+GLfloat firstLayerUpperLeft[]={-1.0f,1.0f};
+GLfloat firstLayerUpperRight[]={1.0f,1.0f};
+
+GLfloat firstLayerLowerLeft[]={-1.0f,0.4f};
+GLfloat firstLayerLowerRight[]={1.0f,0.4f};
+
 GLfloat xBack=-0.3f;
 GLfloat yBack=-0.2f;
 
@@ -107,6 +120,8 @@ GLfloat roadFirst[]={-1.0f,-0.5f};
 GLfloat roadSecond[]={-0.84f,-0.3f};
 GLfloat roadThird[]={1.0f,-1.0f};
 GLfloat roadFourth[]={1.0f,-0.5f};
+
+
 void RenderBackWheel()
 {
     drawCircle(xBack,yBack,r,greenColor,false);
@@ -186,9 +201,18 @@ void RenderMountain()
 
 }
 
+
+void RenderCanvas()
+{
+    //drawCanvas(canvasX,canvasY,canvasWidth, canvasHeight,blackColor,greenColor,redColor);
+    drawSurface(firstLayerUpperLeft,firstLayerUpperRight,firstLayerLowerLeft,firstLayerLowerRight,greenColor);
+}
 void RenderBridge()
 {
 
 }
+void RenderWarehouse()
+{
 
+}
 

@@ -11,5 +11,5 @@ void RenderSteering();
 void RenderCloud();
 void RenderMountain();
 void RenderRoad();
-
+void RenderCanvas();
 #endif // UTILSSCENE_H
