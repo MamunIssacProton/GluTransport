@@ -12,4 +12,5 @@ void RenderCloud();
 void RenderMountain();
 void RenderRoad();
 void RenderCanvas();
+void RenderMountains();
 #endif // UTILSSCENE_H

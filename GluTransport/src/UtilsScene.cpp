@@ -9,11 +9,17 @@ GLfloat canvasY=1.0f;
 GLfloat canvasHeight=0.5f;
 GLfloat canvasWidth=0.7f;
 
-GLfloat firstLayerUpperLeft[]={-1.0f,1.0f};
-GLfloat firstLayerUpperRight[]={1.0f,1.0f};
+GLfloat firstLayerStart[]={-1.0f,0.4f};
+GLfloat firstLayerEnd[]={1.0f,1.0f};
 
-GLfloat firstLayerLowerLeft[]={-1.0f,0.4f};
-GLfloat firstLayerLowerRight[]={1.0f,0.4f};
+GLfloat secondLayerStart[]={-1.0f,-0.5f};
+GLfloat secondLayerEnd[]={1.0f,0.4f};
+
+
+GLfloat thirdLayerStart[]={-1.0f,-1.0f};
+GLfloat thirdLayerEnd[]={1.0f,-0.5f};
+
+GLfloat cloud[]={0.1f,0.8f,0.25f};
 
 GLfloat xBack=-0.3f;
 GLfloat yBack=-0.2f;
@@ -74,8 +80,10 @@ GLfloat yFrontUpperRightRodConnector=0.2f;
 GLfloat greenColor[]={0.0f, 0.9f, 0.2f};
 GLfloat redColor[]={0.9f, 0.2f, 0.3f};
 GLfloat blackColor[]={0.2f,0.1f,0.4f};
-//GLfloat cloudyColor[]={0.09f,0.88f,0.9f};
 GLfloat cloudyColor[]={0.0973f,0.973f,0.996f};
+GLfloat skyColor[]={0.6f,0.8f,1.0f};
+GLfloat waterColor[]={0.3f,0.6f,0.9f};
+GLfloat whiteColor[]={1.0f,1.0f,1.0f};
 //container
 
 GLfloat containerX=-0.7f;
@@ -181,32 +189,37 @@ void RenderSteering()
 
 void RenderCloud()
 {
-     drawCloud(cloudStartX,cloudStartY,cloudRadius,cloudyColor);
+    drawCloud(cloud[0],cloud[1],cloud[2]);
 }
 
 void RenderRoad()
 {
-    drawSurface(roadFirst,roadSecond,roadThird, roadFourth,blackColor);
+
 }
 
 void RenderMountain()
 {
     for(int i=0; i<3; i++)
     {
-        drawTriangle(mountainStartX,mountainStartY,mountainHighX, mountainHighY, mountainEndX, mountainEndY,blackColor);
         mountainStartX+=0.3f;
         mountainHighX+=0.2f;
 
     }
-
 }
 
 
 void RenderCanvas()
 {
-    //drawCanvas(canvasX,canvasY,canvasWidth, canvasHeight,blackColor,greenColor,redColor);
-    drawSurface(firstLayerUpperLeft,firstLayerUpperRight,firstLayerLowerLeft,firstLayerLowerRight,greenColor);
+    drawSurface(firstLayerStart,firstLayerEnd,skyColor);
+    drawSurface(secondLayerStart,secondLayerEnd,whiteColor);
+    drawSurface(thirdLayerStart,thirdLayerEnd,waterColor);
 }
+
+void RenderMountains()
+{
+    drawTriangles(firstLayerStart[0],firstLayerStart[1],3,greenColor);
+}
+
 void RenderBridge()
 {
 

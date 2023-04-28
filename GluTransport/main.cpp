@@ -14,7 +14,7 @@ void renderBitmapString(float x, float y, float z, void *font, char *string) {
 void display() {
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // Set background color to black and opaque
     glClear(GL_COLOR_BUFFER_BIT); // Clear the color buffer (background)
-    glBegin(GL_POINTS);
+
 
 //    RenderBackWheel();
 //    RenderPartsConnector();
@@ -31,8 +31,9 @@ void display() {
 //    RenderMountain();
 //
 //    RenderRoad();
-RenderCanvas();
-
+     RenderCanvas();
+  RenderMountains();
+RenderCloud();
 
      glFlush(); // Render now
 }

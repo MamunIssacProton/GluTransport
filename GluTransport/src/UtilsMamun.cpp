@@ -80,72 +80,80 @@ void drawRectangle(GLfloat x, GLfloat y, GLfloat width, GLfloat height, GLfloat 
     drawLine(lowerStartX,lowerStartY,upperStartX,upperEndY,color);
     drawLine(lowerEndX,lowerEndY,upperEndX,upperEndY,color);
 
-    cout<<lowerStartX<<endl;
-    cout<<lowerStartY<<endl;
-    cout<<upperStartX<<endl;
-    cout<<upperStartY<<endl;
-}
-void drawRectangleInPixel(GLfloat x, GLfloat y, GLint pixelWidth, GLint pixelHeight, GLfloat color[3]) {
-    // Calculate the width and height in the range of -1 to 1
-    GLfloat width = 2.0f * pixelWidth / glutGet(GLUT_WINDOW_WIDTH) - 1.0f;
-    GLfloat height = 2.0f * pixelHeight / glutGet(GLUT_WINDOW_HEIGHT) - 1.0f;
-
-    // Set the color of the rectangle
-    glColor3f(color[0], color[1], color[2]);
-
-    // Draw the rectangle using lines
-    glBegin(GL_LINES);
-    glVertex2f(x, y);
-    glVertex2f(x + width, y);
-
-    glVertex2f(x + width, y);
-    glVertex2f(x + width, y + height);
-
-    glVertex2f(x + width, y + height);
-    glVertex2f(x, y + height);
-
-    glVertex2f(x, y + height);
-    glVertex2f(x, y);
-    glEnd();
 }
 
-void drawSurface(GLfloat first[], GLfloat second[], GLfloat third[], GLfloat fourth[], GLfloat color[] )
+
+void drawSurface(GLfloat layerStart[], GLfloat layerEnd[], GLfloat color[] )
 {
-
-//     glColor3f(color[0],color[1], color[2]);
-//    glRectf(first[0],first[1],second[0],second[1]);
-glClear(GL_COLOR_BUFFER_BIT); // clear the color buffer
-
-   glColor3f(1.0f, 0.0f, 0.0f); // set the color to red
-   glRectf(-0.5f, -0.5f, 0.5f, 0.5f); // draw a rectangle from (-0.5,-0.5) to (0.5,0.5)
+   glColor3f(color[0],color[1],color[2]);
+   glRectf(layerStart[0],layerStart[1],layerEnd[0],layerEnd[1]);
 
    glFlush();
 }
 
 
-
-
-void drawCloud(GLfloat startX, GLfloat startY, GLfloat r, GLfloat color[] )
-{
-//    for(int i=0;i<2;i++)
-//    {
-//
-//        startX+=
-//    }
-     drawCircle(startX,startY,r,color,true);
-     drawCircle(startX+.4f,startY,r+.1f,color, true);
-     drawCircle(startX+.2f, startY-.1f,r-.1f,color,true);
+void drawCloudCircle(float centerX, float centerY, float radius, int numSegments)
+ {
+   glBegin(GL_TRIANGLE_FAN);
+   for (int i = 0; i <= numSegments; i++)
+        {
+      float theta = ((float)i / (float)numSegments) * 2.0f * PI;
+      float x = radius * cos(theta);
+      float y = radius * sin(theta);
+      glVertex2f(x + centerX, y + centerY);
+   }
+   glEnd();
 }
 
-void drawTriangle(GLfloat startX, GLfloat startY, GLfloat highX, GLfloat highY, GLfloat endX,GLfloat endY, GLfloat color[])
+void drawCloud(float centerX, float centerY, float radius )
 {
-    glBegin(GL_TRIANGLES);
-    glColor3f(color[0],color[1], color[2]);
-    glVertex2f(startX, startY);
-    glVertex2f(highX,highY);
-    glVertex2f(endX,endY);
-    glEnd();
+    glColor3f(1.0f, 1.0f, 1.0f);
+   drawCloudCircle(centerX, centerY, radius, 50);
+   drawCloudCircle(centerX - radius / 2, centerY - radius / 3, radius / 2, 50);
+   drawCloudCircle(centerX + radius / 2, centerY - radius / 3, radius / 2, 50);
 
+   // Draw the cloud edges
+   drawCloudCircle(centerX + radius / 3, centerY + radius / 3, radius / 2, 50);
+   drawCloudCircle(centerX - radius / 3, centerY + radius / 3, radius / 2, 50);
 }
 
+
+
+
+
+void drawTriangle(float startX, float startY, float size, float color[])
+ {
+
+   float x1 = startX;
+   float y1 = startY;
+   float x2 = startX + size;
+   float y2 = startY;
+   float x3 = startX + (size / 2);
+   float y3 = startY + size;
+
+
+   glBegin(GL_TRIANGLES);
+   glColor3f(color[0],color[1],color[2]);
+
+   glVertex2f(x1, y1);
+   glColor3f(0.0f, 1.0f, 0.0f);
+   glVertex2f(x2, y2);
+   glColor3f(0.0f, 0.0f, 1.0f);
+   glVertex2f(x3, y3);
+   glEnd();
+}
+void drawTriangles(float startX,float startY,int count, float color[])
+ {
+   float spacing = 0.5f / (float)count;
+
+   float size = spacing;
+
+
+   for (int i = 0; i < count; i++)
+   {
+      drawTriangle(startX, startY, size,color);
+      startX += spacing;
+      size += spacing;
+   }
+}
 
