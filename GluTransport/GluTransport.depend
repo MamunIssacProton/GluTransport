@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1682704834 source:c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\main.cpp
+1682964373 source:c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<UtilsScene.h>
@@ -222,13 +222,13 @@
 1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
 	<_mingw.h>
 
-1682705244 source:c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\src\utilsmamun.cpp
+1682952191 source:c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\src\utilsmamun.cpp
 	<windows.h>
 	<GL/glut.h>
 	<math.h>
 	<iostream>
 
-1682703930 c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\include\utilsmamun.h
+1682880406 c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\include\utilsmamun.h
 
 1680895062 c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\include\utilsmamunscene.h
 
@@ -238,11 +238,12 @@
 	<math.h>
 	<UtilsMamun.h>
 
-1682703946 c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\include\utilsscene.h
+1682930756 c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\include\utilsscene.h
 
-1682704230 source:c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\src\utilsscene.cpp
+1682964200 source:c:\users\proton\desktop\glutprojecfinalterm\glutransport\glutransport\src\utilsscene.cpp
 	<windows.h>
 	<GL/glut.h>
 	<math.h>
 	<UtilsMamun.h>
+	<iostream>
 

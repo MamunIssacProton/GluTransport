@@ -29,7 +29,7 @@ void drawCircle(GLfloat x, GLfloat y, GLfloat radius, GLfloat color[], bool isFi
 		}
 	glEnd();
 
-	glFlush();
+	//glFlush();
 }
 
 void drawRingSpoke(GLfloat x, GLfloat y, GLfloat radius, int spokeCount, GLfloat color[])
@@ -45,7 +45,7 @@ void drawRingSpoke(GLfloat x, GLfloat y, GLfloat radius, int spokeCount, GLfloat
         glVertex2f(x, y);
     }
     glEnd();
-    glFlush();
+   // glFlush();
 }
 
 
@@ -56,7 +56,7 @@ void drawLine(GLfloat xStart, GLfloat yStart, GLfloat xEnd, GLfloat yEnd, GLfloa
     glVertex2f(xStart,yStart);
     glVertex2f(xEnd, yEnd);
     glEnd();
-    glFlush();
+   // glFlush();
 }
 
 
@@ -82,13 +82,73 @@ void drawRectangle(GLfloat x, GLfloat y, GLfloat width, GLfloat height, GLfloat 
 
 }
 
+void drawEdge(float start[],float End[], float color[])
+{
 
-void drawSurface(GLfloat layerStart[], GLfloat layerEnd[], GLfloat color[] )
+    glColor3f(color[0],color[1], color[2]);
+    glLineWidth(2.5f);
+    glBegin(GL_LINES);
+
+    glVertex2f(start[0],start[1]);
+    glVertex2f(End[0], End[1]);
+    glEnd();
+    //glFlush();
+}
+
+void drawSurface(GLfloat layerStart[], GLfloat layerEnd[], GLfloat color[])
 {
    glColor3f(color[0],color[1],color[2]);
    glRectf(layerStart[0],layerStart[1],layerEnd[0],layerEnd[1]);
 
-   glFlush();
+  // glFlush();
+}
+
+void drawMarker(float startingPoints[],float endingPoints[],int markerCount, float color[],bool onladder)
+{
+    float width=endingPoints[0]-startingPoints[0];
+    float height=endingPoints[1]-startingPoints[1];
+    float space[]={((width/markerCount+1.3f)-1),height/(markerCount)};
+    if(onladder)
+    {
+        space[0]=width/(markerCount-1);
+
+    }
+
+    float layerStart[2],layerEnd[2],spacing[2];
+    spacing[0]=space[0];
+    spacing[1]=space[1];
+
+        for(int i=0;i<markerCount;i++)
+       {
+        layerStart[0]=startingPoints[0]+i*space[0];
+        layerEnd[0]=layerStart[0]+width;
+        layerStart[1]=startingPoints[1]+i*space[1];
+        layerEnd[1]=layerStart[1]+height;
+        drawSurface(layerStart,layerEnd,color);
+
+      }
+
+
+
+}
+
+void DrawLadder(float startingPoints[],float endingPoints[],int stepCount, float color[])
+{
+    float width=endingPoints[0]-startingPoints[0];
+    float height=endingPoints[1]-startingPoints[1];
+    float stepHeight=height/stepCount;
+    float space[]={width/stepCount,height/stepCount};
+    float layerStart[2],layerEnd[2],spacing[2];
+    spacing[0]=space[0];
+    spacing[1]=0.0f;
+    for(int i=0;i<stepCount;i++)
+    {
+        layerStart[0]=startingPoints[0]+i*spacing[0];
+        layerEnd[0]=width-spacing[0];
+        layerStart[1]=startingPoints[1]+i*stepHeight;
+        layerEnd[1]=layerStart[1]+stepHeight;
+        drawMarker(layerStart,layerEnd,stepCount-1,color,true);
+    }
 }
 
 

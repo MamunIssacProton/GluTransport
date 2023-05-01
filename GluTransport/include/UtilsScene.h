@@ -9,8 +9,13 @@ void RenderTail();
 void RenderSeat();
 void RenderSteering();
 void RenderCloud();
-void RenderMountain();
 void RenderRoad();
 void RenderCanvas();
 void RenderMountains();
+void RenderWarehouse();
+void RenderShop();
+void RenderRiverUnderBridge();
+void RenderVehicle();
+void AnimateVehicle(int value);
+void Dis();
 #endif // UTILSSCENE_H

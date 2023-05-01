@@ -17,8 +17,13 @@ void drawTriangle(float startX, float startY, float size, float color[]);
 
 void drawTriangles(float startX,float startY,int count, float color[]);
 
+void drawEdge(float start[],float End[], float color[]);
+
 void drawSurface(GLfloat layerStart[], GLfloat layerEnd[], GLfloat color[] );
 
+void drawMarker(float startingPoints[],float endingPoints[],int markerCount, float color[],bool onLadder);
+
+void DrawLadder(float startingPoints[],float endingPoints[],int markerCount, float color[]);
 
 void drawRectangleInPixel(GLfloat x, GLfloat y, GLint pixelWidth, GLint pixelHeight, GLfloat color[3]);
 #endif // UTILSMAMUN_H
