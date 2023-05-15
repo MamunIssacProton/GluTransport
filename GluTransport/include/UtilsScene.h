@@ -17,5 +17,7 @@ void RenderShop();
 void RenderRiverUnderBridge();
 void RenderVehicle();
 void AnimateVehicle(int value);
-void Dis();
+void RenderSplash();
+void RenderBoat();
+void AnimateBoat(int value);
 #endif // UTILSSCENE_H

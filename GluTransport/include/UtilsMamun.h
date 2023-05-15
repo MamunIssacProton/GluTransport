@@ -26,4 +26,8 @@ void drawMarker(float startingPoints[],float endingPoints[],int markerCount, flo
 void DrawLadder(float startingPoints[],float endingPoints[],int markerCount, float color[]);
 
 void drawRectangleInPixel(GLfloat x, GLfloat y, GLint pixelWidth, GLint pixelHeight, GLfloat color[3]);
+
+void drawTextOnScreen(float position[],float color[]);
+
+void drawBoat(float startX, float startY, float size, float color[] );
 #endif // UTILSMAMUN_H

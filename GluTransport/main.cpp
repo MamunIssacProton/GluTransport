@@ -2,6 +2,7 @@
 #include <GL/glut.h> // GLUT, include glu.h and gl.h
 #include<UtilsScene.h>
 
+
 void renderBitmapString(float x, float y, float z, void *font, char *string) {
     char *c;
     glRasterPos3f(x, y,z);
@@ -10,11 +11,12 @@ void renderBitmapString(float x, float y, float z, void *font, char *string) {
         glutBitmapCharacter(font, *c);
     }
 }
+
 bool firsRender=true;
 void display() {
-    
-   glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // Set background color to black and opaque
-   // glClear(GL_COLOR_BUFFER_BIT); // Clear the color buffer (background)
+
+  // glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // Set background color to black and opaque
+  glClear(GL_COLOR_BUFFER_BIT); // Clear the color buffer (background)
 if(firsRender)
 {
 
@@ -34,6 +36,7 @@ if(firsRender)
 //    RenderMountain();
 //
 //    RenderRoad();
+
         RenderCanvas();
         RenderMountains();
         RenderCloud();
@@ -42,17 +45,36 @@ if(firsRender)
         RenderWarehouse();
         RenderShop();
         RenderVehicle();
+        RenderBoat();
 }
    else
    {
-        
+
    }
       //  AnimateVehicle();
      glFlush(); // Render now
-    
+
 }
 
 
+void RenderMainScreen(int value)
+{
+    glutDestroyWindow(glutGetWindow());
+    glutInitWindowSize(1920, 1080);
+    glutCreateWindow("Main Screen");
+    glutFullScreen();
+    glutDisplayFunc(display);
+    glutTimerFunc(0, AnimateVehicle, 0);
+    glutMainLoop();
+}
+void splashScreen()
+{
+    RenderSplash();
+     glutSwapBuffers();
+
+    // Wait for 3 seconds before switching to main screen
+    glutTimerFunc(1000, RenderMainScreen, 0);
+}
 
 /* Main function: GLUT runs as a console application starting at main() */
 int main(int argc, char** argv) {
@@ -69,8 +91,9 @@ int main(int argc, char** argv) {
     //firsRender=false;
 
      // Register display callback handler for window re-paint
-     //glutTimerFunc(0,AnimateVehicle,0);
-     // display();
+    glutTimerFunc(0,AnimateVehicle,0);
+    glutTimerFunc(5,AnimateBoat,0);
+         // display();
     glutMainLoop();
 
   // Enter the event-processing loop

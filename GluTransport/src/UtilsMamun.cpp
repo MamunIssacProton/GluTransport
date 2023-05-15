@@ -191,7 +191,6 @@ void drawTriangle(float startX, float startY, float size, float color[])
    float x3 = startX + (size / 2);
    float y3 = startY + size;
 
-
    glBegin(GL_TRIANGLES);
    glColor3f(color[0],color[1],color[2]);
 
@@ -200,6 +199,7 @@ void drawTriangle(float startX, float startY, float size, float color[])
    glVertex2f(x2, y2);
    glColor3f(0.0f, 0.0f, 1.0f);
    glVertex2f(x3, y3);
+
    glEnd();
 }
 void drawTriangles(float startX,float startY,int count, float color[])
@@ -215,5 +215,48 @@ void drawTriangles(float startX,float startY,int count, float color[])
       startX += spacing;
       size += spacing;
    }
+}
+
+
+void drawTextOnScreen(float position[],float color[],string text)
+{
+    glColor3f(color[0], color[1],color[2]);
+
+    // Set text position
+    glRasterPos2f(position[0], position[1]);
+
+    // Draw text
+//    glutBitmapString(GLUT_BITMAP_HELVETICA_18, text);
+
+    glFlush();
+}
+
+void drawBoat(float startX, float startY, float size, float color[] ) {
+   glColor3f(color[0], color[1],color[2]);
+
+   float width = size * 2.0f;
+   float height = size * 1.0f;
+   float midX = startX + width * 0.5f;
+   float midY = startY + height * 0.5f;
+
+   glBegin(GL_POLYGON);
+   glVertex2f(startX, startY);                 
+   glVertex2f(startX + width * 0.5f, startY);  
+   glVertex2f(startX + width * 0.5f, midY + height * 0.1f);  
+   glVertex2f(midX + width * 0.3f, midY + height * 0.1f);    
+   glVertex2f(midX + width * 0.3f, midY + height * 0.3f);    
+   glVertex2f(midX - width * 0.3f, midY + height * 0.3f);   
+   glVertex2f(midX - width * 0.3f, midY + height * 0.1f);     
+   glVertex2f(startX - width * 0.5f, midY + height * 0.1f);   
+   glVertex2f(startX - width * 0.5f, startY);  
+
+   glEnd();
+
+   glBegin(GL_LINES);
+   glVertex2f(midX, midY + height * 0.3f);   // Point J
+   glVertex2f(midX, midY + height * 0.6f);   // Point K
+   glEnd();
+
+   glFlush();
 }
 

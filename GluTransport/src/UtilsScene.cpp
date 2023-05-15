@@ -29,6 +29,7 @@ float bridgeEnd[]={0.63f,0.25f};
 float riverStart[]={0.4f,-0.6f};
 float riverEnd[]={0.6f,0.4f};
 
+float boatStart[]={-0.9f,-0.9f};
 
 float wareHouse[]={-0.95f,-0.4f};
 float wareHouseBoundaryStart[]={-0.9f,-0.5f};
@@ -70,6 +71,8 @@ float container[2][2]={{-0.93f,0.15f},{-0.69f,0.32f}};
 //GLfloat yFront=-0.2f;
 float r=-0.09f;
 
+float titlePos[]={100,100};
+float contributorsPos[4][2]={{100,120},{100,140}};
 
 GLfloat steeringX=0.21f;
 GLfloat steeringY=0.3f;
@@ -266,13 +269,14 @@ void RenderShop()
 }
 void RenderVehicle()
 {
+    glPushMatrix();
         RenderFrontWheel();
         RenderBackWheel();
         RenderPartsConnector();
         RenderSteering();
         RenderSeat();
         RenderContainer();
-
+glPopMatrix();
 }
 
 
@@ -305,9 +309,13 @@ void AnimateVehicle(int time)
 int windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
      glScissor(0, 0, windowWidth, windowHeight);
     glEnable(GL_SCISSOR_TEST);
-
+//
     glClear(GL_COLOR_BUFFER_BIT);
 
+if(carrier[0][0]>=0.76f)
+{
+    return;
+}
     wheelBack[0]+=velocityX;
     wheelFront[0]+=velocityX;
 
@@ -319,6 +327,7 @@ connectorUpperToUpperLeft[0][0]+=velocityX;
 connectorUpperToUpperLeft[1][0]+=velocityX;
 connectorUpperLeftToBack[0][0]+=velocityX;
 connectorUpperLeftToBack[1][0]+=velocityX;
+
 
  carrier[0][0]+=velocityX;
  carrier[1][0]+=velocityX;
@@ -332,34 +341,27 @@ steering[0][0]+=velocityX;
 steering[1][0]+=velocityX;
 steering[2][0]+=velocityX;
 
-if(carrier[0][0]>=1.5f)
-{
-    wheelBack[0]=-.75f;
-    wheelFront[0]=-.35f;
-    connectorBackFront[0][0]=wheelBack[0];
-    connectorBackFront[1][0]=wheelFront[0];
-    connectorFrontUpper[0][0]=wheelFront[0];
-    connectorFrontUpper[1][0]=-.45f;
-    connectorUpperToUpperLeft[0][0]=-.41f;
-    connectorUpperToUpperLeft[1][0]=-.65f;
-    connectorUpperLeftToBack[0][0]=-.65f;
-    connectorUpperLeftToBack[1][0]=wheelBack[0];
-
-    carrier[0][0]=-.68f;
-    carrier[1][0]=-.95f;
-
-    seat[0][0]=-.68f;
-    seat[1][0]=-.61f;
-
-    container[0][0]=-.93f;
-    container[1][0]=-.69f;
-    steering[0][0]=-.45f;
-    steering[1][0]=-.5f;
-    steering[2][0]=-.4f;
-}
-
-
     glutPostRedisplay();
-    glutTimerFunc(550,AnimateVehicle,0);
+   glutTimerFunc(550,AnimateVehicle,0);
 }
 
+void AnimateBoat(int time)
+{
+    if(boatStart[0]>=1)
+    {
+        boatStart[0]=-0.9f;
+    }
+
+    boatStart[0]+=velocityX;
+     glutPostRedisplay();
+   glutTimerFunc(550,AnimateBoat,0);
+}
+void RenderSplash()
+{
+//    drawTextOnScreen(titlePos,limeColor,"Bismillah");
+}
+void RenderBoat()
+{
+     drawBoat(boatStart[0],boatStart[1], 0.3f,limeColor);
+
+}
